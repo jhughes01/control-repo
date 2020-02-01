@@ -1,2 +1,6 @@
 ---
-message: "This node is using common data"
+users:
+  'jhughes':
+    ensure: present
+    shell: '/bin/bash'
+    groups: 'wheel'
