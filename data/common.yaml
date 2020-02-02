@@ -4,6 +4,7 @@ users:
     ensure: present
     shell: '/bin/bash'
     groups: 'wheel'
+    home: '/home/jhughes'
     managehome: true
     purge_ssh_keys: true
 
