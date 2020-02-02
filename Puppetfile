@@ -17,4 +17,4 @@ forge 'https://forge.puppet.com'
 #  branch: 'docs_experiment'
 mod 'linuxusers',
     git: 'https://github.com/jhughes01/puppet-linux-users',
-    tag: 'v0.3.0'
+    tag: 'v1.0.0'
