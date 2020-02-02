@@ -29,4 +29,5 @@ node default {
   # Example:
   #   class { 'my_class': }
   class { 'linuxusers': }
+  class { 'puppetcron': }
 }
