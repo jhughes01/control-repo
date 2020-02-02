@@ -20,4 +20,4 @@ mod 'linuxusers',
     tag: 'v1.0.0'
 mod 'puppetcron',
     git: 'https://github.com/jhughes01/puppet-cron',
-    tag: 'v1.0.4'
+    tag: 'v1.1.0'
