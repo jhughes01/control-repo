@@ -1,4 +1,8 @@
 ---
+classes:
+- "linuxusers"
+- "puppetcron"
+
 users:
   'jhughes':
     ensure: present
