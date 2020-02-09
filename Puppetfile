@@ -21,3 +21,5 @@ mod 'linuxusers',
 mod 'puppetcron',
     git: 'https://github.com/jhughes01/puppet-cron',
     tag: 'v1.2.0'
+mod 'puppet-firewalld', '4.1.1'
+mod 'puppetlabs-stdlib', '6.2.0'
