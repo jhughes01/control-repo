@@ -21,5 +21,9 @@ mod 'linuxusers',
 mod 'puppetcron',
     git: 'https://github.com/jhughes01/puppet-cron',
     tag: 'v1.2.0'
+mod 'puppet-librarian_puppet_gem',
+    git: 'https://github.com/jhughes01/puppet-librarian-gem',
+    tag: 'v1.0.0'
+
 mod 'puppet-firewalld', '4.1.1'
 mod 'puppetlabs-stdlib', '6.2.0'

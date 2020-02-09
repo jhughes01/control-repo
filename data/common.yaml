@@ -3,6 +3,7 @@ classes:
 - "linuxusers"
 - "puppetcron"
 - "firewalld"
+- "librarian_puppet_gem"
 
 users:
   'jhughes':
