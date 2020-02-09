@@ -2,7 +2,7 @@
 class profile::jenkins {
   jenkins::plugin { 'mailer': }
   jenkins::plugin { 'display-url-api version':
-    version => '2.3.1',
+    version => '2.3.2',
   }
 
   jenkins::user { 'admin':
