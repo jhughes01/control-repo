@@ -27,3 +27,4 @@ mod 'puppet-librarian_puppet_gem',
 
 mod 'puppet-firewalld', '4.1.1'
 mod 'puppetlabs-stdlib', '6.2.0'
+mod 'puppet-jenkins', '2.0.0'
