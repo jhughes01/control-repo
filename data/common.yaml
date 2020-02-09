@@ -1,9 +1,6 @@
 ---
 classes:
-- "linuxusers"
-- "puppetcron"
-- "firewalld"
-- "librarian_puppet_gem"
+  - profile::base
 
 users:
   'jhughes':

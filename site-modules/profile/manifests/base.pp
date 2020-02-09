@@ -1,5 +1,7 @@
+# base profile for common classes to be applied to all nodes
 class profile::base {
-
-  #the base profile should include component modules that will be on all nodes
-
+  include linuxusers
+  include puppetcron
+  include firewalld
+  include librarian_puppet_gem
 }
