@@ -9,7 +9,9 @@ class profile::jenkins {
   #   email    => 'admin@fake.com',
   #   password => 'changeme',
   # }
+  jenkins::plugin { 'git': }
+
   jenkins::job { 'packer-centos7':
   config => template('profile/jenkins/jenkins-packer-centos7.xml.epp'),
-}
+  }
 }
