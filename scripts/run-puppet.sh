@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 CODE_DIR="/etc/puppetlabs/code/environments/production"
 
