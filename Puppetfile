@@ -20,7 +20,7 @@ mod 'linuxusers',
     tag: 'v1.1.0'
 mod 'puppetcron',
     git: 'https://github.com/jhughes01/puppet-cron',
-    tag: 'v1.2.0'
+    tag: 'v1.3.0'
 mod 'puppet-librarian_puppet_gem',
     git: 'https://github.com/jhughes01/puppet-librarian-gem',
     tag: 'v1.0.0'
