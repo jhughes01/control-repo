@@ -21,10 +21,11 @@ mod 'linuxusers',
 mod 'puppetcron',
     git: 'https://github.com/jhughes01/puppet-cron',
     tag: 'v1.3.0'
-mod 'puppet-librarian_puppet_gem',
-    git: 'https://github.com/jhughes01/puppet-librarian-gem',
-    tag: 'v1.0.0'
 
 mod 'puppet-firewalld', '4.1.1'
 mod 'puppetlabs-stdlib', '6.2.0'
 mod 'puppet-jenkins', '2.0.0'
+mod 'puppetlabs-java', '5.0.0'
+mod 'puppet-archive', '5.0.0'
+mod 'camptocamp-systemd', '3.0.0'
+mod 'puppetlabs-transition', '1.0.0'

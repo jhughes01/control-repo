@@ -3,5 +3,4 @@ class profile::base {
   include linuxusers
   include puppetcron
   include firewalld
-  include librarian_puppet_gem
 }
