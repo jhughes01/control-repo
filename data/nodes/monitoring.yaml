@@ -36,14 +36,6 @@ prometheus::scrape_configs:
           - 'localhost:9090'
         labels:
           alias: 'Prometheus'
-  - job_name: 'node'
-    scrape_interval: '10s'
-    scrape_timeout: '10s'
-    static_configs:
-      - targets:
-          - 'nodexporter.domain.com:9100'
-        labels:
-          alias: 'Node'
 
 prometheus::alertmanagers_config:
   - static_configs:
@@ -51,3 +43,8 @@ prometheus::alertmanagers_config:
           - 'localhost:9093'
 
 prometheus::alertmanager::version: '0.13.0'
+
+node_exporter_instances:
+  - jenkins
+  - jenkins-dev
+  - monitoring
