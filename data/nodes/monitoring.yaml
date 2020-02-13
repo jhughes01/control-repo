@@ -2,6 +2,13 @@
 classes:
   - role::monitoring_server
 
+firewalld::ports:
+  'Allow port 9090':
+    ensure: present
+    zone: public
+    port: 9090
+    protocol: 'tcp'
+
 prometheus::manage_prometheus_server: true
 
 prometheus::version: '2.15.2'
