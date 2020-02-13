@@ -3,4 +3,5 @@ class profile::base {
   include linuxusers
   include puppetcron
   include firewalld
+  include prometheus::node_exporter
 }
