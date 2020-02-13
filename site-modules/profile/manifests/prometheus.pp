@@ -52,11 +52,12 @@ class { 'prometheus':
 }
 
 class { 'prometheus::alertmanager':
-  version   => '0.13.0',
-  route     => {
+  version => '0.13.0',
+  route   => {
     'group_by'        => ['alertname', 'cluster', 'service'],
     'group_wait'      => '30s',
     'group_interval'  => '5m',
     'repeat_interval' => '3h',
     'receiver'        => 'slack',
   }
+}
