@@ -1,6 +1,7 @@
+# Site profile - grafana
 class profile::grafana {
   class { 'grafana':
-    cfg => {
+    cfg                      => {
       'auth.anonymous' => {
         enabled  => true,
         org_role => 'Admin',
@@ -13,5 +14,30 @@ class profile::grafana {
         allow_sign_up => false,
       },
     },
+    provisioning_datasources => {
+      apiVersion  => 1,
+      datasources => [
+        {
+          name      => 'Prometheus',
+          type      => 'prometheus',
+          url       => 'http://localhost:9090',
+          isDefault => true,
+        },
+      ],
+    },
+    provisioning_dashboards  => {
+    apiVersion => 1,
+    providers  => [
+      {
+        name            => 'Hardware Usage',
+        type            => 'file',
+        disableDeletion => true,
+        options         => {
+          path         => '/var/lib/grafana/dashboards',
+          puppetsource => 'puppet:///modules/profile/dashboards',
+        },
+      },
+    ],
+    }
   }
 }
