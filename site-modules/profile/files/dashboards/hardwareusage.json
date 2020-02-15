@@ -15,7 +15,6 @@
     "editable": true,
     "gnetId": null,
     "graphTooltip": 0,
-    "id": 1,
     "links": [],
     "panels": [
         {
@@ -383,6 +382,7 @@
             "type": "gauge"
         }
     ],
+    "refresh": "30s",
     "schemaVersion": 22,
     "style": "dark",
     "tags": [],
@@ -396,5 +396,6 @@
     "timepicker": {},
     "timezone": "",
     "title": "Hardware Usage",
-    "uid": "osffEIQWk"
+    "uid": "osffEIQWk",
+    "version": 1
 }
