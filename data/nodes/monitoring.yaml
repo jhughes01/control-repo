@@ -3,10 +3,15 @@ classes:
   - role::monitoring_server
 
 firewalld::ports:
-  'Allow port 9090':
+  'Prometheus':
     ensure: present
     zone: public
     port: 9090
+    protocol: 'tcp'
+  'AlertManager':
+    ensure: present
+    zone: public
+    port: 9093
     protocol: 'tcp'
 
 prometheus::manage_prometheus_server: true
@@ -36,15 +41,18 @@ prometheus::scrape_configs:
           - 'localhost:9090'
         labels:
           alias: 'Prometheus'
+  - job_name: 'node'
+    scrape_interval: '10s'
+    scrape_timeout: '10s'
+    static_configs:
+      - targets:
+          - 'jenkins-dev:9100'
+          - 'jenkins:9100'
+        labels:
+          alias: 'Node'
 
 prometheus::alertmanagers_config:
   - static_configs:
       - targets:
           - 'localhost:9093'
 
-prometheus::alertmanager::version: '0.13.0'
-
-node_exporter_instances:
-  - jenkins
-  - jenkins-dev
-  - monitoring

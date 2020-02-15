@@ -23,3 +23,10 @@ firewalld::services:
     ensure: present
     service: ssh
     zone: public
+
+firewalld::ports:
+  'Node Exporter':
+    ensure: present
+    zone: public
+    port: 9100
+    protocol: 'tcp'
