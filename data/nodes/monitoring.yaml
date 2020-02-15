@@ -13,6 +13,11 @@ firewalld::ports:
     zone: public
     port: 9093
     protocol: 'tcp'
+  'Grafana':
+    ensure: present
+    zone: public
+    port: 3000
+    protocol: 'tcp'
 
 prometheus::manage_prometheus_server: true
 
