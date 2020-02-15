@@ -1,4 +1,4 @@
 class role::monitoring_server {
   include prometheus
-  include grafana
+  include profile::grafana
 }

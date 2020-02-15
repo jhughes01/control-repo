@@ -62,4 +62,3 @@ prometheus::alertmanagers_config:
   - static_configs:
       - targets:
           - 'localhost:9093'
-
