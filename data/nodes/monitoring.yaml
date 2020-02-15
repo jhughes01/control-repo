@@ -18,6 +18,11 @@ firewalld::ports:
     zone: public
     port: 3000
     protocol: 'tcp'
+  'SMTP':
+    ensure: present
+    zone: public
+    port: 25
+    protocol: 'tcp'
 
 prometheus::manage_prometheus_server: true
 
@@ -31,7 +36,7 @@ prometheus::alerts:
           expr: 'up == 0'
           for: '5m'
           labels:
-            severity: 'page'
+            severity: 'warning'
           annotations:
             summary: 'Instance {{ $labels.instance }} down'
             description: '{{ $labels.instance }} of job {{ $labels.job }} has been
@@ -52,8 +57,6 @@ prometheus::scrape_configs:
     static_configs:
       - targets:
           - 'localhost:9100'
-          - 'jenkins-dev:9100'
-          - 'jenkins:9100'
           - 'plex02:9100'
         labels:
           alias: 'Node'
@@ -63,7 +66,7 @@ prometheus::alertmanagers_config:
       - targets:
           - 'localhost:9093'
 
-prometheus::alertmanager::version: '0.20.0'
+prometheus::alertmanager::version: '0.9.0'
 
 prometheus::alertmanager::route:
   group_by:
@@ -75,7 +78,7 @@ prometheus::alertmanager::route:
   receiver: 'email'
 
 prometheus::alertmanager::receivers:
-  - name: 'email'
+  - name: email
     email_configs:
-      to: 'jxhughes95@gmail.com'
-      from: 'alertmanager@monitoring.home'
+      -  to: 'jxhughes95@gmail.com'
+         require_tls: false
