@@ -1,3 +1,10 @@
 ---
 classes:
   - docker
+
+firewalld::ports:
+  'Transmission':
+    ensure: present
+    zone: public
+    port: 9091
+    protocol: 'tcp'
