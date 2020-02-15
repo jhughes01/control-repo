@@ -1,0 +1,7 @@
+---
+firewalld::ports:
+  'Plex':
+    ensure: present
+    zone: public
+    port: 32400
+    protocol: 'tcp'
