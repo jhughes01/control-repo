@@ -1,7 +1,0 @@
----
-firewalld::ports:
-  'Allow port 8080':
-    ensure: present
-    zone: public
-    port: 8080
-    protocol: 'tcp'
