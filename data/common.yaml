@@ -24,6 +24,11 @@ firewalld::services:
     service: ssh
     zone: public
 
+lookup_options:
+  firewalld::ports:
+    merge:
+      strategy: hash
+
 firewalld::ports:
   'Node Exporter':
     ensure: present
