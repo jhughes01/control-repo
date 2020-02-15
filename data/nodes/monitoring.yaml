@@ -54,6 +54,7 @@ prometheus::scrape_configs:
           - 'localhost:9100'
           - 'jenkins-dev:9100'
           - 'jenkins:9100'
+          - 'plex02:9100'
         labels:
           alias: 'Node'
 
