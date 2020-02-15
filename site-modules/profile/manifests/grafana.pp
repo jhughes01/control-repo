@@ -21,6 +21,7 @@ class profile::grafana {
           name      => 'Prometheus',
           type      => 'prometheus',
           url       => 'http://localhost:9090',
+          access    => 'proxy',
           isDefault => true,
         },
       ],
