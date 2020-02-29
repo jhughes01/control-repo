@@ -2,7 +2,7 @@
 classes:
   - profile::base
 
-accounts::user_list:
+accounts::user:
   jhughes:
     groups: ['wheel']
     sshkeys: 
