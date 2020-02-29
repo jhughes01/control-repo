@@ -15,9 +15,6 @@ forge 'https://forge.puppet.com'
 #mod 'apache',
 #  git:    'https://github.com/puppetlabs/puppetlabs-apache',
 #  branch: 'docs_experiment'
-mod 'linuxusers',
-    git: 'https://github.com/jhughes01/puppet-linux-users',
-    tag: 'v1.1.0'
 mod 'puppetcron',
     git: 'https://github.com/jhughes01/puppet-cron',
     tag: 'v1.3.0'
@@ -34,3 +31,5 @@ mod 'puppet-grafana', '6.1.0'
 mod 'puppetlabs-docker', '3.9.1'
 mod 'puppetlabs-translate', '2.1.0'
 mod 'puppetlabs-reboot', '2.4.0'
+mod 'puppetlabs-accounts', '6.1.0'
+mod 'saz-sudo', '6.0.0'
