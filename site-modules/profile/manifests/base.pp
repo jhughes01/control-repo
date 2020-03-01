@@ -15,4 +15,8 @@ class profile::base {
     'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCirgfx1x7RtJj9De/foPMEoWmatgcunQtLGIPixtHI7JHHoAMK10bKNjmfEyWSNHWuo7cD3Gbyas45/JUIVWcizOnETS4f2HF2g+yjlOh72E4rGB2ZyivaEIgadRTnsgshkCWKsNpn4AldMaJAmHQUHXzBVgIzwPP/qEaZC5wUCF0vav7Qksjcb2uBkiUoFi1lDe2eU3GvYRPk4hnG/GDGEu2OPoxicSGbUYLZ02YCoIq/ZRFoFHbCB9dtpJdZxcErN1fyO4rMlP7tFPzwXfIWLfu7zRqCwq+qMvmn1DlFukzGmZH0flA5iKaGJu7SOB9djYBl2+umPGH+4/aROi5vhgPS9mwMNKRVMkAr8D+qWiL94oMOb2AbXUcB7rDdPisjMGmSIvfGA9x7ghRYY30emdFXk00HmkJDDY4zoKh+A1YCGu2UznuANoe8JtjI5+Ql4KakfQhmL+eDe7H3oRP09zvQciAfYhe8/ew2seRvVN/WOYBpbyf0IxgKdBzJBfey9WrQYAy2xbEr9aOpB2mO+nI6i4vEjMdK7zvW5WehUUgMqlF1x1zORxbnxSyYykntMD3aczoWZvNfDvABH/1+d0Dj1vLX/aL1Sy9XHf4Rs06r91E0591ndYZs6GnSrfljkTOfotVmsz5ZRO3cwxYtSfn+lIuBqK2aUUB62YpqDw== jhughes-windows',
   ],
 }
+  ensure_packages(['moreutils', 'git'], {
+    'ensure'  => 'latest',
+    'require' => Package['epel-release'],
+  })
 }
