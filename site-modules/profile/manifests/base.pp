@@ -17,6 +17,6 @@ class profile::base {
 }
   ensure_packages(['moreutils', 'git'], {
     'ensure'  => 'latest',
-    'require' => Package['epel-release'],
+    'require' => package['epel-release']
   })
 }
