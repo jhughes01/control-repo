@@ -17,7 +17,7 @@ forge 'https://forge.puppet.com'
 #  branch: 'docs_experiment'
 mod 'puppetcron',
     git: 'https://github.com/jhughes01/puppet-cron',
-    tag: 'v1.3.0'
+    tag: 'v1.4.0'
 
 mod 'puppet-firewalld', '4.1.1'
 mod 'puppetlabs-stdlib', '6.2.0'
