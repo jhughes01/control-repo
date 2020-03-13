@@ -58,7 +58,6 @@ prometheus::scrape_configs:
       - targets:
           - 'localhost:9100'
           - 'plex02:9100'
-          - '192.168.1.1:9100'
           - 'hv1:9100'
         labels:
           alias: 'Node'
