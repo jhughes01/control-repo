@@ -1,0 +1,89 @@
+version: '3'
+services:
+  gluetun:
+    image: qmcgaw/private-internet-access
+    container_name: gluetun
+    cap_add:
+      - NET_ADMIN
+    network_mode: bridge
+    sysctls:
+      - net.ipv6.conf.all.disable_ipv6=0
+    ports:
+      - 6789:6789/tcp # NZBGet
+      - 7878:7878/tcp # Radarr
+      #- 8888:8888/tcp # Tinyproxy
+      #- 8388:8388/tcp # Shadowsocks
+      #- 8388:8388/udp # Shadowsocks
+      #- 8000:8000/tcp # Built-in HTTP control server
+      - 8989:8989/tcp # Sonarr
+    # command:
+    environment:
+      - VPNSP=mullvad
+      - PROTOCOL=udp
+      - OPENVPN_VERBOSITY=1
+      - OPENVPN_ROOT=no
+      - TZ=Europe/London
+      # Mullvad
+      - USER=726356732386
+      - COUNTRY=UK
+      - CITY=Manchester
+      - ISP=M247
+      # DNS over TLS
+      - DNS_PLAINTEXT_ADDRESS=192.168.1.1
+      - DOT=off
+      - DOT_PROVIDERS=cloudflare
+      - DOT_IPV6=off
+      - DOT_VERBOSITY=1
+      - BLOCK_MALICIOUS=on
+      - BLOCK_SURVEILLANCE=off
+      - BLOCK_ADS=off
+      - UNBLOCK=
+      - DNS_UPDATE_PERIOD=24h
+      # Firewall
+      - FIREWALL=on
+      - EXTRA_SUBNETS=192.168.1.0/24
+    # restart: always
+  nzbget:
+    image: linuxserver/nzbget
+    container_name: nzbget
+    network_mode: "service:gluetun"
+    environment:
+      - TZ=Europe/London
+    volumes:
+      - /data/media-config/nzbget/config:/config
+      - /data/plex-media:/downloads
+    depends_on:
+      - gluetun
+  #   ports:
+  #     - 6789:6789
+  # restart: unless-stopped
+  sonarr:
+    image: linuxserver/sonarr
+    container_name: sonarr
+    network_mode: "service:gluetun"
+    environment:
+      - TZ=Europe/London
+    volumes:
+      - /data/media-config/sonarr/data:/config
+      - /data/plex-media/tv:/tv
+      - /data/plex-media/tv:/downloads
+    depends_on:
+      - gluetun
+    #ports:
+      #- 8989:8989
+    # restart: unless-stopped
+  radarr:
+    image: linuxserver/radarr
+    container_name: radarr
+    network_mode: "service:gluetun"
+    environment:
+      - TZ=Europe/London
+    volumes:
+      - /data/media-config/radarr/data:/config
+      - /data/plex-media/movies:/movies
+      - /data/plex-media/movies:/downloads
+    depends_on:
+      - gluetun
+#    ports:
+#      - 7878:7878
+    # restart: unless-stopped
