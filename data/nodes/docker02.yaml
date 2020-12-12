@@ -1,0 +1,24 @@
+---
+classes:
+  - role::docker_host
+
+firewalld::ports:
+  'Plex':
+    ensure: present
+    zone: public
+    port: 32400
+    protocol: 'tcp'
+
+docker::run_instance::instance:
+  plex:
+    image: 'linuxserver/plex'
+    net: 'host'
+    env:
+      - 'VERSION:latest' 
+    volumes:
+      - '/data/plex-config:/config'
+      - '/data/plex-media/movies:/movies'
+      - '/data/plex-media/tv:/tv'
+    restart_service: true
+    extra_parameters:
+      - '--device=/dev/dri:/dev/dri'
