@@ -46,9 +46,9 @@ class profile::docker_host {
     subscribe     => File['/tmp/docker-compose.yaml'],
   }
 
-  file { '/opt/prometheus':
-    ensure => 'directory',
-  }
+  # file { '/opt/prometheus':
+  #   ensure => 'directory',
+  # }
 
   file { '/opt/prometheus/prometheus.yml':
     ensure => 'file',
@@ -60,13 +60,11 @@ class profile::docker_host {
     source => 'puppet:///modules/profile/alerting-rules.yml'
   }
 
-  docker::run { 'helloworld':
-  image           => 'prom/prometheus',
-  ports           => ['9090', '9090'],
-  volumes         => [
-    '/opt/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml',
-    '/opt/prometheus/alerting-rules.yml:/etc/prometheus/alerting-rules.yml'
-    ],
-  restart_service => true,
-}
+  docker::run { 'prometheus':
+    image           => 'prom/prometheus',
+    ports           => ['9090', '9090'],
+    volumes         => ['/opt/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml'],
+    restart_service => true,
+    subscribe       => File['/opt/prometheus/prometheus.yml', '/opt/prometheus/alerting-rules.yml']
+  }
 }
