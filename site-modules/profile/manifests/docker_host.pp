@@ -84,10 +84,10 @@ class profile::docker_host {
   }
 
   docker::run { 'grafana':
-    image            => 'grafana/grafana',
-    ports            => ['3000:3000'],
-    volumes          => ['/opt/grafana/dashboards/hardwareusage.json:/var/lib/grafana/dashboards'],
-    restart_services => true,
-    subscribe        => File['/opt/grafana/dashboards/hardwareusage.json']
+    image           => 'grafana/grafana',
+    ports           => ['3000:3000'],
+    volumes         => ['/opt/grafana/dashboards/hardwareusage.json:/var/lib/grafana/dashboards'],
+    restart_service => true,
+    subscribe       => File['/opt/grafana/dashboards/hardwareusage.json']
   }
 }
