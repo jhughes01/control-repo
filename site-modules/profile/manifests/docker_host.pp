@@ -63,8 +63,31 @@ class profile::docker_host {
   docker::run { 'prometheus':
     image           => 'prom/prometheus',
     ports           => ['9090:9090'],
-    volumes         => ['/opt/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml'],
+    volumes         => [
+      '/opt/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml,',
+      '/opt/prometheus/alerting-rules.yml:/etc/prometheus/alerting-rules.yml',
+      ],
     restart_service => true,
     subscribe       => File['/opt/prometheus/prometheus.yml', '/opt/prometheus/alerting-rules.yml']
+  }
+
+  file { [
+    '/opt/grafana',
+    '/opt/grafana/dashboards',
+    ]:
+    ensure => 'directory',
+  }
+
+  file { '/opt/grafana/dashboards/hardwareusage.json':
+    ensure => 'file',
+    source => 'puppet:///modules/profile/dashboards/hardwareusage.json'
+  }
+
+  docker::run { 'grafana':
+    image            => 'grafana/grafana',
+    ports            => ['3000:3000'],
+    volumes          => ['/opt/grafana/dashboards/hardwareusage.json:/var/lib/grafana/dashboards'],
+    restart_services => true,
+    subscribe        => File['/opt/grafana/dashboards/hardwareusage.json']
   }
 }
