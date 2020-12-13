@@ -73,9 +73,20 @@ class profile::docker_host {
 
   file { [
     '/opt/grafana',
+    '/opt/grafana/config',
     '/opt/grafana/dashboards',
     ]:
     ensure => 'directory',
+  }
+
+  file { '/opt/grafana/config/grafana.ini':
+    ensure => 'file',
+    source => 'puppet:///modules/profile/grafana.ini'
+  }
+
+  file { '/opt/grafana/config/dashboards.yml':
+    ensure => 'file',
+    source => 'puppet:///modules/profile/dashboards.yml'
   }
 
   file { '/opt/grafana/dashboards/hardwareusage.json':
@@ -86,8 +97,16 @@ class profile::docker_host {
   docker::run { 'grafana':
     image           => 'grafana/grafana',
     ports           => ['3000:3000'],
-    volumes         => ['/opt/grafana/dashboards/hardwareusage.json:/var/lib/grafana/dashboards'],
+    volumes         => [
+      '/opt/grafana/config/dashboards.yml:/etc/grafana/provisioning/dashboards.yml',
+      '/opt/grafana/config/grafana.ini:/etc/grafana/grafana.ini',
+      '/opt/grafana/dashboards/hardwareusage.json:/var/lib/grafana/dashboards',
+      ],
     restart_service => true,
-    subscribe       => File['/opt/grafana/dashboards/hardwareusage.json']
+    subscribe       => File[
+      '/opt/grafana/config/dashboards.yml:/etc/grafana/provisioning/dashboards.yml',
+      '/opt/grafana/config/grafana.ini:/etc/grafana/grafana.ini',
+      '/opt/grafana/dashboards/hardwareusage.json:/var/lib/grafana/dashboards',
+      ]
   }
 }
