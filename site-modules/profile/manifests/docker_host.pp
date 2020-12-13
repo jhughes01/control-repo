@@ -62,7 +62,7 @@ class profile::docker_host {
 
   docker::run { 'prometheus':
     image           => 'prom/prometheus',
-    ports           => ['9090', '9090'],
+    ports           => ['9090:9090'],
     volumes         => ['/opt/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml'],
     restart_service => true,
     subscribe       => File['/opt/prometheus/prometheus.yml', '/opt/prometheus/alerting-rules.yml']
