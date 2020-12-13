@@ -46,6 +46,10 @@ class profile::docker_host {
     subscribe     => File['/tmp/docker-compose.yaml'],
   }
 
+  file { '/opt/prometheus':
+    ensure => 'directory',
+  }
+
   file { '/opt/prometheus/prometheus.yml':
     ensure => 'file',
     source => 'puppet:///modules/profile/prometheus.yml'
