@@ -100,7 +100,7 @@ class profile::docker_host {
     volumes         => [
       '/opt/grafana/config/dashboards.yml:/etc/grafana/provisioning/dashboards.yml',
       '/opt/grafana/config/grafana.ini:/etc/grafana/grafana.ini',
-      '/opt/grafana/dashboards/hardwareusage.json:/var/lib/grafana/dashboards',
+      '/opt/grafana/dashboards/hardwareusage.json:/var/lib/grafana/dashboards/hardwareusage.json',
       ],
     restart_service => true,
     subscribe       => File[
