@@ -23,6 +23,11 @@ firewalld::ports:
     zone: public
     port: 3000
     protocol: 'tcp'
+  'SNMP-Exporter':
+    ensure: present
+    zone: public
+    port: 9116
+    protocol: 'tcp'
 
 docker::run_instance::instance:
   plex:
@@ -41,4 +46,6 @@ docker::run_instance::instance:
     image: 'quay.io/prometheus/alertmanager'
     ports: ['9093:9093']
     restart_service: true
-
+  snmp-exporter:
+    image: 'quay.io/prometheus/snmp-exporter'
+    ports: ['9116:9116']
