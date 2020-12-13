@@ -45,4 +45,24 @@ class profile::docker_host {
     compose_files => ['/tmp/docker-compose.yaml'],
     subscribe     => File['/tmp/docker-compose.yaml'],
   }
+
+  file { '/opt/prometheus/prometheus.yml':
+    ensure => 'file',
+    source => 'puppet:///modules/profile/prometheus.yml'
+  }
+
+  file { '/opt/prometheus/alerting-rules.yml':
+    ensure => 'file',
+    source => 'puppet:///modules/profile/alerting-rules.yml'
+  }
+
+  docker::run { 'helloworld':
+  image           => 'prom/prometheus',
+  ports           => ['9090', '9090'],
+  volumes         => [
+    '/opt/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml',
+    '/opt/prometheus/alerting-rules.yml:/etc/prometheus/alerting-rules.yml'
+    ],
+  restart_service => true,
+}
 }

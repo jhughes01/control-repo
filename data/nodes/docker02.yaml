@@ -8,6 +8,21 @@ firewalld::ports:
     zone: public
     port: 32400
     protocol: 'tcp'
+  'Prometheus':
+    ensure: present
+    zone: public
+    port: 9090
+    protocol: 'tcp'
+  'AlertManager':
+    ensure: present
+    zone: public
+    port: 9093
+    protocol: 'tcp'
+  'Grafana':
+    ensure: present
+    zone: public
+    port: 3000
+    protocol: 'tcp'
 
 docker::run_instance::instance:
   plex:
@@ -22,3 +37,8 @@ docker::run_instance::instance:
     restart_service: true
     extra_parameters:
       - '--device=/dev/dri:/dev/dri'
+  alertmanager:
+    image: 'quay.io/prometheus/alertmanager'
+    ports: ['9093:9093']
+    restart_service: true
+
