@@ -94,6 +94,11 @@ class profile::docker_host {
     source => 'puppet:///modules/profile/dashboards.yml'
   }
 
+  file { '/opt/grafana/config/datasources.yml':
+    ensure => 'file',
+    source => 'puppet:///modules/profile/datasources.yml'
+  }
+
   file { '/opt/grafana/dashboards/hardwareusage.json':
     ensure => 'file',
     source => 'puppet:///modules/profile/dashboards/hardwareusage.json'
@@ -105,12 +110,14 @@ class profile::docker_host {
     net             => ['monitoring'],
     volumes         => [
       '/opt/grafana/config/dashboards.yml:/etc/grafana/provisioning/dashboards/dashboards.yml',
+      '/opt/grafana/config/datasources.yml:/etc/grafana/provisioning/datasources/datasources.yml',
       '/opt/grafana/config/grafana.ini:/etc/grafana/grafana.ini',
       '/opt/grafana/dashboards/hardwareusage.json:/var/lib/grafana/dashboards/hardwareusage.json',
       ],
     restart_service => true,
     subscribe       => File[
       '/opt/grafana/config/dashboards.yml',
+      '/opt/grafana/config/datasources.yml',
       '/opt/grafana/config/grafana.ini',
       '/opt/grafana/dashboards/hardwareusage.json',
       ]
