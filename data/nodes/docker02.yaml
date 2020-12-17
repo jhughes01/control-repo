@@ -48,8 +48,6 @@ docker::run_instance::instance:
       - '9093:9093'
     net:
       - 'monitoring'
-    links: 
-      - 'prometheus:prometheus'
     restart_service: true
   snmp-exporter:
     image: 'quay.io/prometheus/snmp-exporter'
@@ -57,5 +55,3 @@ docker::run_instance::instance:
       - '9116:9116'
     net:
       - 'monitoring'
-    links: 
-      - 'prometheus:prometheus'

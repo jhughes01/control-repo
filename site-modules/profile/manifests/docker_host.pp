@@ -68,11 +68,6 @@ class profile::docker_host {
     image           => 'prom/prometheus',
     ports           => ['9090:9090'],
     net             => ['monitoring'],
-    links           => [
-      'alertmanager:alertmanager',
-      'grafana:grafana',
-      'snmp-exporter:snmp-exrpoter',
-      ],
     volumes         => [
       '/opt/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml',
       '/opt/prometheus/alerting-rules.yml:/etc/prometheus/alerting-rules.yml',
@@ -108,7 +103,6 @@ class profile::docker_host {
     image           => 'grafana/grafana:7.3.6',
     ports           => ['3000:3000'],
     net             => ['monitoring'],
-    links           => ['prometheus:prometheus'],
     volumes         => [
       '/opt/grafana/config/dashboards.yml:/etc/grafana/provisioning/dashboards/dashboards.yml',
       '/opt/grafana/config/grafana.ini:/etc/grafana/grafana.ini',
