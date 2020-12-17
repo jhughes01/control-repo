@@ -31,6 +31,10 @@ class profile::docker_host {
     atboot   => true,
   }
 
+  docker_network { 'monitoring':
+    ensure => present,
+  }
+
   class {'docker::compose':
     ensure => present,
   }
@@ -63,6 +67,7 @@ class profile::docker_host {
   docker::run { 'prometheus':
     image           => 'prom/prometheus',
     ports           => ['9090:9090'],
+    net             => ['monitoring'],
     links           => [
       'alertmanager:alertmanager',
       'grafana:grafana',
@@ -102,6 +107,7 @@ class profile::docker_host {
   docker::run { 'grafana':
     image           => 'grafana/grafana:7.3.6',
     ports           => ['3000:3000'],
+    net             => ['monitoring'],
     links           => ['prometheus:prometheus'],
     volumes         => [
       '/opt/grafana/config/dashboards.yml:/etc/grafana/provisioning/dashboards/dashboards.yml',
