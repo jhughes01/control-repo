@@ -98,7 +98,7 @@ class profile::docker_host {
     image           => 'grafana/grafana:7.3.6',
     ports           => ['3000:3000'],
     volumes         => [
-      '/opt/grafana/config/dashboards.yml:/etc/grafana/provisioning/dashboards.yml',
+      '/opt/grafana/config/dashboards.yml:/etc/grafana/provisioning/dashboards/dashboards.yml',
       '/opt/grafana/config/grafana.ini:/etc/grafana/grafana.ini',
       '/opt/grafana/dashboards/hardwareusage.json:/var/lib/grafana/dashboards/hardwareusage.json',
       ],
