@@ -96,7 +96,7 @@ class profile::docker_host {
 
   docker::run { 'grafana':
     image           => 'grafana/grafana',
-    ports           => ['3000:3000'],
+    ports           => ['3000:3000:7.3.6'],
     volumes         => [
       '/opt/grafana/config/dashboards.yml:/etc/grafana/provisioning/dashboards.yml',
       '/opt/grafana/config/grafana.ini:/etc/grafana/grafana.ini',
