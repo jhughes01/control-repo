@@ -22,6 +22,7 @@ scrape_configs:
   - targets:
     - localhost:9100
     - hv1:9100
+    - docker02:9100
     labels:
       alias: Node
 - job_name: snmp
