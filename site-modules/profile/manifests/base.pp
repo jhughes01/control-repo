@@ -22,7 +22,7 @@ class profile::base {
     ensure => 'directory'
   }
 
-  file { '/etc/puppetlabs/r10k/r10k.yaml.':
+  file { '/etc/puppetlabs/r10k/r10k.yaml':
     ensure => 'file',
     source => 'puppet:///modules/profile/r10k.yaml'
   }
